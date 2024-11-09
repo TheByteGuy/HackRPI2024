@@ -6,6 +6,17 @@
 }
 
 /* Body and Container Styling */
+.banner {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: flex-start;  /* Align content to the top */
+    align-items: center;         /* Center content horizontally */
+    width: 100%;                 /* Ensure the banner spans the full width */
+    min-height: 200px;           /* Adjust the height as needed */
+    background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
+    padding: 20px;               /* Optional: Adds some padding inside the banner */
+}
+
 .majority {
     font-family: Arial, sans-serif;
     display: flex;
