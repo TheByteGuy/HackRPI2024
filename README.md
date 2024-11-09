@@ -1,6 +1,9 @@
+
+![Critter Capture (3)](https://github.com/user-attachments/assets/3d78e028-fb25-499e-a9c6-ade0dabb94bc)
+
 # Critter Capture
 
-### This project is a website. Within the website you will take pictures of any animals, fish, or insects that you see in your daily life. 
+##### This project is a website, where you will take pictures of any animals, fish, or insects that you see in your daily life. 
 
 ##### -Then it will determine the species of animal, and will categorize your photo for you.
 
