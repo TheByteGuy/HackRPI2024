@@ -6,13 +6,16 @@
     <title>Critter Capture AI</title>
     <link rel="icon" href="icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
-    <img src="Untitled.png" alt="Critter Capture Banner" width="405" height="90" align="top|center"> 
 </head>
 <body>
+    <!-- Image Wrapper for Center Alignment -->
+    <div class="top-center-image">
+        <img src="Untitled.png" alt="Critter Capture Banner" width="405" height="90">
+    </div>
+
     <div class="container">
         <h1>🐾 Critter Capture</h1>
         <p>Upload a photo of an animal to see its classification!</p>
-
         <form id="uploadForm">
             <label for="photo" class="file-label">
                 <input type="file" id="photo" name="photo" accept="image/*" required>
@@ -20,30 +23,20 @@
             </label>
             <button type="button" onclick="classifyAnimal()">Classify Animal</button>
         </form>
-
         <div id="image-preview">
             <img id="preview-image" src="" alt="Image Preview">
         </div>
-
         <div id="result" class="result"></div>
         <div id="error" class="error"></div>
     </div>
-    <script src="script.js"></script>
-</body>
 
-
-<body>
     <div class="container">
         <h1>🏆 Critter Capture Leaderboard</h1>
         <p>Upload a photo of an animal to earn points and climb the leaderboard!</p>
-
-        <!-- Login/Registration Form -->
         <div id="auth-section">
             <input type="text" id="username" placeholder="Enter Username" required>
             <button onclick="registerOrLogin()">Register/Login</button>
         </div>
-        
-        <!-- Upload Form -->
         <form id="uploadForm" style="display: none;">
             <label for="photo" class="file-label">
                 <input type="file" id="photo" name="photo" accept="image/*" required>
@@ -51,27 +44,15 @@
             </label>
             <button type="button" onclick="classifyAnimal()">Classify Animal</button>
         </form>
-
-        <!-- Image Preview -->
         <div id="image-preview">
             <img id="preview-image" src="" alt="Image Preview">
         </div>
-
-        <!-- User Score -->
         <div id="user-score" class="result">Your Uploads: <span id="uploadCount">0</span></div>
-
-        <!-- Leaderboard -->
         <h2>Leaderboard</h2>
         <div id="leaderboard"></div>
-
-        <!-- Error Message -->
         <div id="error" class="error"></div>
     </div>
+
     <script src="script.js"></script>
 </body>
-
-
-
-
-
 </html>
