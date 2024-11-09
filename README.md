@@ -1,4 +1,4 @@
-# AnimalSnap
+# Critter Capture
 
 ### This project is a website. Within the website you will take pictures of any animals, fish, or insects that you see in your daily life. 
 
