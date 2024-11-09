@@ -1,4 +1,4 @@
-#AnimalSnap
+# AnimalSnap
 
 ###This project is an app. Within the app you will take pictures of any animals, fish, or insects that you see in your daily life. 
 
