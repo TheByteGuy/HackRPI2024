@@ -6,7 +6,7 @@
 }
 
 /* Body and Container Styling */
-body {
+.majority {
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
