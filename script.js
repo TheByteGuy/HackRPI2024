@@ -44,3 +44,26 @@ function handleImageSelection(event) {
 
 const photoInput = document.getElementById('photo');
 photoInput.addEventListener('change', handleImageSelection);
+
+
+document.getElementById('photo').addEventListener('change', previewImage);
+
+function previewImage(event) {
+    const file = event.target.files[0];
+    const previewImage = document.getElementById('preview-image');
+    const errorDiv = document.getElementById('error');
+
+    if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            previewImage.src = e.target.result;
+            previewImage.style.display = 'block'; // Make the image visible
+            errorDiv.innerText = ''; // Clear any error messages
+        };
+        reader.readAsDataURL(file); // Read the image file as a data URL
+    } else {
+        previewImage.src = '';
+        previewImage.style.display = 'none';
+        errorDiv.innerText = 'Please select a valid image file.';
+    }
+}
