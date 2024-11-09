@@ -28,4 +28,19 @@ async function classifyAnimal() {
         console.error('Error:', error);
         resultDiv.innerText = 'There was an error classifying the animal.';
     }
-};
+}
+
+function handleImageSelection(event) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        const imagePreview = document.getElementById('preview-image');
+        imagePreview.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+}
+
+const photoInput = document.getElementById('photo');
+photoInput.addEventListener('change', handleImageSelection);
