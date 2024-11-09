@@ -1,14 +1,9 @@
-
-const photoInput = document.getElementById('photo');
-photoInput.addEventListener('change', handleImageSelection);
-
-
-document.getElementById('photo').addEventListener('change', previewImage);
-
 async function classifyAnimal() {
     const fileInput = document.getElementById('photo');
     const resultDiv = document.getElementById('result');
-    resultDiv.innerText = ''; // Clear previous results
+    const errorDiv = document.getElementById('error');
+    resultDiv.innerText = ''; // Clear previous result
+    errorDiv.innerText = '';  // Clear previous error
 
     if (fileInput.files.length === 0) {
         alert('Please select a photo.');
@@ -34,8 +29,21 @@ async function classifyAnimal() {
     } catch (error) {
         console.error('Error:', error);
         resultDiv.innerText = 'There was an error classifying the animal.';
+    
+    // MOVE BELLOW ME TO CLASSIFICATION RESULT WHEN FIXED
+    // Simulate classification and increment score
+    users[currentUser].uploads += 1;
+    localStorage.setItem('users', JSON.stringify(users));
+
+    // Update display
+    updateScoreDisplay();
+    displayLeaderboard();
+    // MOVE ABOVE ME TO CLASSIFICATION RESULT WHEN FIXED
+    
     }
 }
+
+
 
 
 function handleImageSelection(event) {
@@ -57,6 +65,11 @@ function handleImageSelection(event) {
     }
 }
 
+const photoInput = document.getElementById('photo');
+photoInput.addEventListener('change', handleImageSelection);
+
+
+document.getElementById('photo').addEventListener('change', previewImage);
 
 function previewImage(event) {
     const file = event.target.files[0];
@@ -83,6 +96,8 @@ function previewImage(event) {
 let users = JSON.parse(localStorage.getItem('users')) || {};
 let currentUser = null;
 
+document.getElementById('photo').addEventListener('change', previewImage);
+
 function registerOrLogin() {
     const username = document.getElementById('username').value.trim();
     const errorDiv = document.getElementById('error');
@@ -105,25 +120,6 @@ function registerOrLogin() {
     document.getElementById('auth-section').style.display = 'none';
     document.getElementById('uploadForm').style.display = 'block';
     document.getElementById('error').innerText = '';
-    updateScoreDisplay();
-    displayLeaderboard();
-}
-
-// Function to classify the animal and increment score
-function classifyAnimal() {
-    if (!currentUser) return;
-
-    const fileInput = document.getElementById('photo');
-    if (fileInput.files.length === 0) {
-        alert('Please select a photo.');
-        return;
-    }
-
-    // Simulate classification and increment score
-    users[currentUser].uploads += 1;
-    localStorage.setItem('users', JSON.stringify(users));
-
-    // Update display
     updateScoreDisplay();
     displayLeaderboard();
 }
