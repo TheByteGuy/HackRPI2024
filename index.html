@@ -15,7 +15,7 @@
     <div class="container">
         <h1>🐾 Animal Classifier</h1>
         <p>Upload a photo of an animal to see its classification!</p>
-        
+
         <form id="uploadForm">
             <label for="photo" class="file-label">
                 <input type="file" id="photo" name="photo" accept="image/*" required>
@@ -23,7 +23,11 @@
             </label>
             <button type="button" onclick="classifyAnimal()">Classify Animal</button>
         </form>
-        
+
+        <div id="image-preview">
+            <img id="preview-image" src="" alt="Image Preview">
+        </div>
+
         <div id="result" class="result"></div>
         <div id="error" class="error"></div>
     </div>
