@@ -22,6 +22,7 @@
     align-items: start;
     background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
     padding-top: 20px; /* Space at the top for the image */
+    justify-content: center;
 }
 
 .top-center-image {
