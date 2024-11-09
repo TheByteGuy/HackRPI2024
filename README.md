@@ -1,6 +1,6 @@
 # AnimalSnap
 
-### This project is an app. Within the app you will take pictures of any animals, fish, or insects that you see in your daily life. 
+### This project is a website. Within the app you will take pictures of any animals, fish, or insects that you see in your daily life. 
 
 ##### -The app will determine the species of animal, and will categorize your photo for you.
 
