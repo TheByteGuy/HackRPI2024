@@ -8,13 +8,17 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Banner Section -->
     <div role="banner">
-        <img src="Banner.png" alt="Critter Capture Banner" width="405" height="90" align="top"> 
+        <img src="Banner.png" alt="Critter Capture Banner" width="405" height="90" align="top">
     </div>
+
+    <!-- Main Content Section -->
     <div class="container">
         <h1>🐾 Critter Capture</h1>
         <p>Upload a photo of an animal to see its classification!</p>
 
+        <!-- Upload Form -->
         <form id="uploadForm">
             <label for="photo" class="file-label">
                 <input type="file" id="photo" name="photo" accept="image/*" required>
@@ -23,18 +27,19 @@
             <button type="button" onclick="classifyAnimal()">Classify Animal</button>
         </form>
 
+        <!-- Image Preview -->
         <div id="image-preview">
             <img id="preview-image" src="" alt="Image Preview">
         </div>
 
+        <!-- Classification Result -->
         <div id="result" class="result"></div>
+
+        <!-- Error Message -->
         <div id="error" class="error"></div>
     </div>
-    <script src="script.js"></script>
-</body>
 
-
-<body>
+    <!-- Leaderboard Section -->
     <div class="container">
         <h1>🏆 Critter Capture Leaderboard</h1>
         <p>Upload a photo of an animal to earn points and climb the leaderboard!</p>
@@ -45,7 +50,7 @@
             <button onclick="registerOrLogin()">Register/Login</button>
         </div>
         
-        <!-- Upload Form -->
+        <!-- Upload Form (Hidden initially) -->
         <form id="uploadForm" style="display: none;">
             <label for="photo" class="file-label">
                 <input type="file" id="photo" name="photo" accept="image/*" required>
@@ -69,11 +74,7 @@
         <!-- Error Message -->
         <div id="error" class="error"></div>
     </div>
+
     <script src="script.js"></script>
 </body>
-
-
-
-
-
 </html>
