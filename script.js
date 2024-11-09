@@ -48,3 +48,6 @@ function handleImageSelection(event) {
         imagePreview.src = ""; // Clear the preview image
     }
 }
+
+const photoInput = document.getElementById('photo');
+photoInput.addEventListener('change', handleImageSelection);
