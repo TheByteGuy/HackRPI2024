@@ -1,5 +1,4 @@
-![Critter Capture (6)](https://github.com/user-attachments/assets/cbddc57e-d550-4003-9e26-adb5951394fd)
-
+![Critter Capture (7)](https://github.com/user-attachments/assets/2908d42b-322d-4d96-b74e-ae3f0cab2ae9)
 
 # Critter Capture
 
