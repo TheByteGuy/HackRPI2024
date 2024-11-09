@@ -32,15 +32,19 @@ async function classifyAnimal() {
 
 function handleImageSelection(event) {
     const file = event.target.files[0];
-    const reader = new FileReader();
 
-    reader.onload = function(e) {
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const imagePreview = document.getElementById('preview-image');
+            imagePreview.src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    } else {
+        // Handle the case where no file is selected
         const imagePreview = document.getElementById('preview-image');
-        imagePreview.src = e.target.result;
-    };
-
-    reader.readAsDataURL(file);
+        imagePreview.src = ""; // Clear the preview image
+    }
 }
-
-const photoInput = document.getElementById('photo');
-photoInput.addEventListener('change', handleImageSelection);
