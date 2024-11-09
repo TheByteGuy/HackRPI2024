@@ -1,21 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animal Classification AI</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Animal Classification AI</h1>
-        <form id="uploadForm">
-            <label for="photo">Upload a photo of an animal:</label>
-            <input type="file" id="photo" name="photo" accept="image/*" required>
-            <button type="button" onclick="classifyAnimal()">Classify Animal</button>
-        </form>
-        <div id="result" class="result"></div>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and Container Styling */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
+}
+
+.container {
+    text-align: center;
+    background: #fff;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    animation: fadeIn 1.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Title Styling */
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Instruction Text */
+p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Custom File Input */
+.file-label {
+    display: inline-block;
+    cursor: pointer;
+    color: #fff;
+    background-color: #007BFF;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-bottom: 15px;
+}
+
+.file-label:hover {
+    background-color: #0056b3;
+}
+
+.file-label input[type="file"] {
+    display: none;
+}
+
+/* Button Styling */
+button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+button:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* Result and Error Styling */
+.result, .error {
+    margin-top: 20px;
+    font-size: 1.2em;
+}
+
+.result {
+    color: #333;
+}
+
+.error {
+    color: #dc3545;
+    font-weight: bold;
+}

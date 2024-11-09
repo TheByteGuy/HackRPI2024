@@ -8,13 +8,19 @@
 </head>
 <body>
     <div class="container">
-        <h1>Animal Classification AI</h1>
+        <h1>🐾 Animal Classifier</h1>
+        <p>Upload a photo of an animal to see its classification!</p>
+        
         <form id="uploadForm">
-            <label for="photo">Upload a photo of an animal:</label>
-            <input type="file" id="photo" name="photo" accept="image/*" required>
+            <label for="photo" class="file-label">
+                <input type="file" id="photo" name="photo" accept="image/*" required>
+                <span>Select a Photo</span>
+            </label>
             <button type="button" onclick="classifyAnimal()">Classify Animal</button>
         </form>
+        
         <div id="result" class="result"></div>
+        <div id="error" class="error"></div>
     </div>
     <script src="script.js"></script>
 </body>
