@@ -6,6 +6,7 @@
 }
 
 body {
+    display: block;
     background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
 }
 
