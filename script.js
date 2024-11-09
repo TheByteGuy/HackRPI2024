@@ -28,4 +28,4 @@ async function classifyAnimal() {
         console.error('Error:', error);
         resultDiv.innerText = 'There was an error classifying the animal.';
     }
-}
+};
