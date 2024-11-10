@@ -27,18 +27,6 @@ body {
     height: auto;
 }
 
-/* Main Container Styling */
-.container {
-    text-align: center;
-    background: #c80101;
-    padding: 30px 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 90%;
-    margin-bottom: 20px;
-    animation: fadeIn 1.2s ease-in-out;
-}
 
 /* Title Styling */
 h1 {
@@ -173,15 +161,24 @@ button:hover {
     font-size: 1.5em;
     color: #333;
     max-width: 800px;
-    margin-left: auto; /* Align to the right side */
-    text-align: right;  /* Optional: Align text within the result container to the right */
 }
 
 .desktop .container {
     max-width: 600px;
-    margin-left: auto; /* Align container to the right side */
     padding: 40px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    margin-left: auto; /* Align to the right side */
+    
+
+    text-align: center;
+    background: #ff0000;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 90%;
+    margin-bottom: 20px;
+    animation: fadeIn 1.2s ease-in-out;
 }
 
 
