@@ -26,7 +26,7 @@ body {
     align-items: start;
     padding-top: 20px; /* Space at the top for the image */
     justify-content: center;
-    gap: .08%;
+    gap: 1.0%;
 }
 
 .top-center-image {
