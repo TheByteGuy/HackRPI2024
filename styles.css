@@ -168,26 +168,33 @@ button:hover {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive Design for Mobile Devices */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 1.5rem;
-    }
 
-    .container {
-        padding: 20px 15px;
-    }
+/* Desktop-Specific Styles */
+.desktop #result {
+    font-size: 1.5em;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    align-items: right;
+}
 
-    button, .file-label {
-        padding: 8px 15px;
-        font-size: 0.9rem;
-    }
+.desktop .container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 40px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    align-items: right;
+}
 
-    #auth-section input, #auth-section button {
-        max-width: 100%;
-    }
+/* Mobile-Specific Styles */
+.mobile #result {
+    font-size: 1em;
+    color: #444;
+}
 
-    #image-preview {
-        margin-top: 10px;
-    }
+.mobile .container {
+    max-width: 90%;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
