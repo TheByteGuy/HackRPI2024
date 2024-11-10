@@ -28,13 +28,7 @@
         <!-- Upload Form -->
         <form id="uploadForm">
           <label for="photo" class="file-label">
-            <input
-              type="file"
-              id="photo"
-              name="photo"
-              accept="image/*"
-              required
-            />
+            <input type="file" id="photo" name="photo" accept="image/*" required="">
             <span>Select a Photo</span>
           </label>
           <button type="button" onclick="classifyAnimal()">
@@ -44,7 +38,7 @@
 
         <!-- Image Preview -->
         <div id="image-preview">
-          <img id="preview-image" src="" alt="Image Preview" />
+          <img id="preview-image" src="" alt="Image Preview">
         </div>
 
         <!-- Classification Result -->
@@ -63,25 +57,14 @@
 
         <!-- Login/Registration Form -->
         <div id="auth-section">
-          <input
-            type="text"
-            id="username"
-            placeholder="Enter Username"
-            required
-          />
+          <input type="text" id="username" placeholder="Enter Username" required="">
           <button onclick="registerOrLogin()">Register/Login</button>
         </div>
 
         <!-- Upload Form (Hidden initially) -->
         <form id="uploadForm" style="display: none">
           <label for="photo" class="file-label">
-            <input
-              type="file"
-              id="photo"
-              name="photo"
-              accept="image/*"
-              required
-            />
+            <input type="file" id="photo" name="photo" accept="image/*" required="">
             <span>Select a Photo</span>
           </label>
           <button type="button" onclick="classifyAnimal()">
@@ -91,7 +74,7 @@
 
         <!-- Image Preview -->
         <div id="image-preview">
-          <img id="preview-image" src="" alt="Image Preview" />
+          <img id="preview-image" src="" alt="Image Preview">
         </div>
 
         <!-- User Score -->
@@ -106,7 +89,13 @@
         <!-- Error Message -->
         <div id="error" class="error"></div>
       </div>
-    </div>
+    <div class="container">
+        <h1>🌍 Location</h1>
+        <h4>This is where your animal is located:</h4>
+      <div id="auth-section">
+          <input type="text" id="location" placeholder="Location" required="">
+          <button onclick="registerOrLogin()">Input Location</button>
+        </div></div></div>
     <script src="script.js"></script>
   </body>
 </html>
