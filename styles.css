@@ -1,3 +1,104 @@
+/* Overlay style */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Darker translucent background */
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it covers everything */
+}
+
+/* Loader container */
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Loader style */
+.loader:before, .loader:after {
+    content: '';
+    width: 60px; /* Width of the loader */
+    height: 60px; /* Height of the loader */
+    border-radius: 50%;
+    position: absolute;
+    border: 8px solid transparent; /* Transparent border for the loader */
+    border-top-color: #3498db; /* Color of the top border */
+    animation: spin 1s linear infinite; /* Spin animation */
+}
+
+/* Second loader circle */
+.loader:after {
+    border-top-color: #e74c3c; /* Different color for the second loader */
+    animation-delay: -0.5s; /* Delay for the second loader */
+}
+
+/* Spin animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Optional: Add a text message below the loader */
+.loader-text {
+    margin-top: 10px;
+    color: #ffffff; /* White text color */
+    font-size: 1.2rem; /* Font size */
+    text-align: center;
+}
+
+
+/* General navbar styling */
+.navbar {
+    background-color: #1a1a3a; /* Dark background color */
+    padding: 10px 20px;
+}
+
+.navbar-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto; /* Center align navbar content */
+}
+
+/* Title and subtitle container styling */
+.title-subtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align text to the left */
+    color: #ffffff; /* White text color */
+}
+
+.title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 14px;
+    font-weight: normal;
+    color: #dddddd; /* Lighter color for subtitle */
+}
+
+/* Logo styling */
+.navbar-logo {
+    height: 40px; /* Adjust size as needed */
+    width: auto;
+    margin: 0 auto; /* Center logo in the middle */
+}
+
+/* Avatar styling */
+.navbar-avatar {
+    height: 40px; /* Match logo height */
+    width: auto;
+    border-radius: 50%; /* Circular avatar */
+}
+
 
 @media (max-width: 769px) {
     /* Basic Reset */
@@ -6,6 +107,14 @@
         padding: 0;
         box-sizing: border-box;
     }
+
+    @media (max-width: 769px) {
+        .header {
+            flex-direction: column; /* Stacks items vertically on smaller screens */
+            align-items: center; /* Centers items horizontally in column layout */
+        }
+    }
+    
 
     body {
         display: block;
@@ -21,13 +130,13 @@
         width: 100%;                 /* Ensure the banner spans the full width */
     }
 
+    /* Majority Section */
     .majority {
-        font-family: Arial, sans-serif;
         display: flex;
-        flex-direction: column; /* Stack boxes vertically */
-        align-items: center;
-        padding-top: 20px;
-        gap: 1.0%;
+        flex-wrap: wrap; /* Allow items to wrap onto the next line */
+        justify-content: center; /* Center the items horizontally */
+        padding-top: 20px; /* Space at the top for the image */
+        gap: 1.0%; /* Space between the containers */
     }
 
     .top-center-image {
@@ -53,6 +162,16 @@
         width: 90%;
         margin-bottom: 20px;
         animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .container1 {
+        flex-basis: 100%; /* Make this container take the full width */
+        margin-top: 20px; /* Add some space above this container */
+        text-align: center;
+        background: #fff;
+        padding: 30px 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
     }
 
     /* Title Styling */
@@ -152,35 +271,30 @@
         color: #333;
     }
 
+    /* Auth Section Styling */
+    #auth-section {
+        margin-bottom: 20px;
+    }
 
+    #auth-section input, #auth-section button {
+        padding: 10px;
+        margin: 5px 0;
+        width: 100%;
+        max-width: 300px;
+    }
 
-/* Auth Section Styling */
-#auth-section, #auth-section-1 {
-    margin-bottom: 20px;
-}
+    #auth-section button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
 
-#auth-section input, #auth-section-1 input, #auth-section button, #auth-section-1 button {
-    padding: 10px;
-    margin: 5px 0;
-    width: 100%;
-    max-width: 300px;
-}
-
-/* Button styling */
-#auth-section button, #auth-section-1 button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#auth-section button:hover, #auth-section-1 button:hover {
-    background-color: #0056b3;
-}
-
-
+    #auth-section button:hover {
+        background-color: #0056b3;
+    }
 
     /* Fade-in Animation */
     @keyframes fadeIn {
@@ -189,9 +303,6 @@
     }
 
 }
-
-
-
 
 
 
@@ -222,6 +333,7 @@
     .majority {
         font-family: Arial, sans-serif;
         display: flex;
+        flex-wrap: wrap;
         flex-direction: row;
         align-items: start;
         padding-top: 20px; /* Space at the top for the image */
@@ -249,9 +361,55 @@
         border-radius: 12px;
         box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         max-width: 400px;
-        width: 90%;
+        /* width: 90%; */
         margin-bottom: 20px;
         animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .container1 {
+        text-align: center;
+        background: #fff;
+        padding: 30px 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        /* width: 90%; */
+        margin-bottom: 20px;
+        animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .container2 {
+        text-align: center;
+        background: #fff;
+        padding: 30px 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        /* width: 90%; */
+        margin-bottom: 20px;
+        animation: fadeIn 1.2s ease-in-out;
+    }
+
+    .main-container {
+        text-align: center;
+        border-radius: 12px;
+        max-width: 400px;
+        width: 100%;
+        animation: fadeIn 1.2s ease-in-out;
+    }
+
+    #classification-container {
+        width: 100%;
+        /* margin-top: 110px; Adjusts space between leaderboard and classification result */
+        padding: 30px;
+        padding-top: 10px;
+        background-color: #f9f9f9; /* Light background for the classification area */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        display: none; /* Initially hidden */
+        transition: all 0.3s ease;
+        overflow-x: scroll; 
+        height: 700px;
+        position: relative;
     }
 
     /* Title Styling */
@@ -351,21 +509,19 @@
         color: #333;
     }
 
-
-
     /* Auth Section Styling */
-    #critter-section {
+    #auth-section {
         margin-bottom: 20px;
     }
 
-    #critter-section input, #critter-section button {
+    #auth-section input, #auth-section button {
         padding: 10px;
         margin: 5px 0;
         width: 100%;
         max-width: 300px;
     }
 
-    #critter-section button {
+    #auth-section button {
         background-color: #007bff;
         color: #fff;
         border: none;
@@ -374,36 +530,7 @@
         transition: background-color 0.3s;
     }
 
-    #critter-section button:hover {
-        background-color: #0056b3;
-    }
-
-
-
-
-    /* Auth Section Styling */
-    #auth-section, #auth-section-1 {
-        margin-bottom: 20px;
-    }
-
-    #auth-section input, #auth-section-1 input, #auth-section button, #auth-section-1 button {
-        padding: 10px;
-        margin: 5px 0;
-        width: 100%;
-        max-width: 300px;
-    }
-
-    /* Button styling */
-    #auth-section button, #auth-section-1 button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    #auth-section button:hover, #auth-section-1 button:hover {
+    #auth-section button:hover {
         background-color: #0056b3;
     }
 
