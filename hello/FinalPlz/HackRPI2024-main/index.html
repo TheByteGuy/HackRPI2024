@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Critter Capture AI</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Banner Section -->
+    <nav class="navbar">
+      <div class="navbar-content">
+        <div class="title-subtitle">
+          <div class="title">Critter Capture</div>
+          <div class="subtitle">A 2024 hackRPI Project</div>
+        </div>
+        <img src="Logo.png" alt="Logo" class="navbar-logo" />
+
+        <img src="Logo.png" alt="User Avatar" class="navbar-avatar" />
+      </div>
+    </nav>
+
+    <div class="majority">
+      <!-- Main Content Section -->
+      <div>
+        <div class="container1">
+          <h1>🐾 Critter Capture</h1>
+          <p>Upload a photo of an animal to see its classification!</p>
+
+          <!-- Upload Form -->
+          <form id="uploadForm">
+            <label for="photo" class="file-label">
+              <input
+                type="file"
+                id="photo"
+                name="photo"
+                accept="image/*"
+                required=""
+                onclick="checkLoginStatus(event)"
+              />
+              <span>Select a Photo</span>
+            </label>
+            <button type="button" onclick="classifyAnimal()">
+              Classify Animal
+            </button>
+          </form>
+
+          <!-- Image Preview -->
+          <div id="image-preview">
+            <img id="preview-image" src="" alt="Image Preview" />
+          </div>
+        </div>
+        <div>
+          <div class="container">
+            <h1>🌍 Location</h1>
+            <h4>This is where your animal is located:</h4>
+
+            <div id="auth-section">
+              <input
+                type="text"
+                id="location"
+                placeholder="Location"
+                required=""
+              />
+              <button onclick="updateLocation()">Input Location</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="container"> -->
+      <div
+        class="container2"
+        id="classification-container"
+        style="display: none"
+      >
+        <!-- Classification Result -->
+        <div id="result" class="result"></div>
+
+        <!-- Error Message -->
+        <div id="error" class="error"></div>
+      </div>
+      <!-- </div> -->
+
+      <div class="main-container">
+        <div class="container">
+          <h1>🏆 Critter Capture Leaderboard</h1>
+          <p>
+            Upload a photo of an animal to earn points and climb the
+            leaderboard!
+          </p>
+
+          <!-- Login/Registration Form -->
+          <div id="auth-section">
+            <input
+              type="text"
+              id="username"
+              placeholder="Enter Username"
+              required=""
+            />
+            <button onclick="registerOrLogin()">Register/Login</button>
+          </div>
+
+          <!-- Upload Form (Hidden initially) -->
+          <form id="uploadForm" style="display: none">
+            <label for="photo" class="file-label">
+              <input
+                type="file"
+                id="photo"
+                name="photo"
+                accept="image/*"
+                required=""
+              />
+              <span>Select a Photo</span>
+            </label>
+            <button type="button" onclick="classifyAnimal()">
+              Classify Animal
+            </button>
+          </form>
+
+          <!-- Image Preview -->
+          <div id="image-preview">
+            <img id="preview-image" src="" alt="Image Preview" />
+          </div>
+
+          <!-- User Score -->
+          <div id="user-score" class="result">
+            Your Uploads: <span id="uploadCount">0</span>
+          </div>
+
+          <!-- Leaderboard -->
+          <h2>Leaderboard</h2>
+          <div id="leaderboard"></div>
+
+          <!-- Error Message -->
+          <div id="error" class="error"></div>
+        </div>
+
+        <div class="container">
+          <h1>🗺️ Maps</h1>
+          <div id="map" style="height: 400px; width: 100%"></div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-920id32yJPTtKT9N352MMq9VZdw3jkU&callback=initMap"
+      async
+      defer
+    ></script>
+  </body>
+</html>
