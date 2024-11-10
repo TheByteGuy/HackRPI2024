@@ -17,7 +17,7 @@ Our project was originally inspired by the game Pokémon Snap. In the game, your
 Our project allows a user to upload any photograph of an animal. The program will classify the animal and give the user information about this animal. This photograph will then receive a rating based on the quality of the photo. 
 
 ## How we built it
-We build a classifier using a combination of HTML, CSS, PEFT Transformers, and Llava. We fine-tuned an AI model provided by Microsoft ResNet 50 on a dataset from iNaturalist to detect animal species. Our current website implements Claude to deliver an AI generated text rundown of the user's uploaded image.
+We build a classifier using a combination of HTML, CSS, PEFT Transformers, and Llava. We fine-tuned an AI model provided by Microsoft ResNet 18 on a dataset from iNaturalist to detect animal species. Our current website implements Claude to deliver an AI generated text rundown of the user's uploaded image.
 
 ## Challenges we ran into
 We had a great level of difficulty in finding a suitable AI model to use. In the end, we determined to fine tune our own. We also struggled with implementing this AI into our front-end, as all of us are primarily back-end developers.
