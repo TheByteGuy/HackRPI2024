@@ -1,10 +1,43 @@
+window.onload = function() {
+    // if (localStorage.getItem("isLoggedIn") === null) {
+    // localStorage.setItem("isLoggedIn", "false");
+    // }
+    localStorage.setItem("isLoggedIn", "false");
+};
+
+function checkLoginStatus(event) {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  
+    if (!isLoggedIn) {
+      event.preventDefault();
+      alert("Please register or log in first to upload a photo.");
+      document.getElementById("auth-section").scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+
 async function classifyAnimal() {
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+    if (!isLoggedIn) {
+        alert("Please register or log in first to classify the animal.");
+        return;
+    }
+
     const fileInput = document.getElementById('photo');
     const resultDiv = document.getElementById('result');
     const errorDiv = document.getElementById('error');
-    resultDiv.innerText = ''; // Clear previous result
-    errorDiv.innerText = '';  // Clear previous error
+    const classificationContainer = document.getElementById('classification-container');
+    const loadingOverlay = document.getElementById('loading-overlay'); // Get the loading overlay
 
+    resultDiv.innerText = '';
+    errorDiv.innerText = '';
+    
+    resultDiv.style.display = 'none';
+    errorDiv.style.display = 'none';
+
+    classificationContainer.style.display = 'none';
+    
     if (fileInput.files.length === 0) {
         alert('Please select a photo.');
         return;
@@ -14,8 +47,13 @@ async function classifyAnimal() {
     const formData = new FormData();
     formData.append('photo', file);
 
+    CustomMarker(file);
+
+    // Show loading overlay
+    loadingOverlay.style.display = 'flex';
+
     try {
-        const response = await fetch('https://your-backend-url.com/classify', {
+        const response = await fetch('http://127.0.0.1:5000/classify', {
             method: 'POST',
             body: formData
         });
@@ -25,25 +63,59 @@ async function classifyAnimal() {
         }
 
         const result = await response.json();
-        resultDiv.innerText = `Classification Result: ${result.classification}`;
-    } catch (error) {
-        console.error('Error:', error);
-        resultDiv.innerText = 'There was an error classifying the animal.';
-    
-    // MOVE BELLOW ME TO CLASSIFICATION RESULT WHEN FIXED
-    // Simulate classification and increment score
-    users[currentUser].uploads += 1;
-    localStorage.setItem('users', JSON.stringify(users));
+        
+        resultDiv.innerHTML = `<h2><strong>Classification Result:</strong></h2> ${result}`;
+        resultDiv.style.display = 'block'; 
+        classificationContainer.style.display = 'block';
 
-    // Update display
-    updateScoreDisplay();
-    displayLeaderboard();
-    // MOVE ABOVE ME TO CLASSIFICATION RESULT WHEN FIXED
-    
+        if (users[currentUser ]) {
+            users[currentUser ].uploads += 1; 
+            localStorage.setItem('users', JSON.stringify(users));  
+        }
+        // Update the display of score and leaderboard
+        updateScoreDisplay();
+        displayLeaderboard();
+    } 
+    catch (error) {
+        console.error('Error:', error);
+        
+        errorDiv.innerText = `Error: ${error.message}`;
+        errorDiv.style.display = 'block'; 
+
+        classificationContainer.style.display = 'block';
+    } 
+    finally {
+        // Hide loading overlay
+        loadingOverlay.style.display = 'none';
     }
 }
 
+function CustomMarker(file){
+    const reader = new FileReader();
+        reader.onload = function (e) {
+        const iconUrl = e.target.result;  
 
+        customIcon = {
+            url: iconUrl,           
+            size: new google.maps.Size(50, 60), 
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(25, 60), 
+            scaledSize: new google.maps.Size(50, 60),
+        };
+
+        
+        if (marker) {
+            marker.setIcon(customIcon); 
+        } else {
+            marker = new google.maps.Marker({
+            map: map,
+            position: map.getCenter(),  
+            icon: customIcon,          
+            });
+        }
+        };
+        reader.readAsDataURL(file);
+}
 
 
 function handleImageSelection(event) {
@@ -80,10 +152,10 @@ function previewImage(event) {
         const reader = new FileReader();
         reader.onload = function (e) {
             previewImage.src = e.target.result;
-            previewImage.style.display = 'block'; // Make the image visible
-            errorDiv.innerText = ''; // Clear any error messages
+            previewImage.style.display = 'block';
+            errorDiv.innerText = '';
         };
-        reader.readAsDataURL(file); // Read the image file as a data URL
+        reader.readAsDataURL(file);
     } else {
         previewImage.src = '';
         previewImage.style.display = 'none';
@@ -99,6 +171,8 @@ let currentUser = null;
 document.getElementById('photo').addEventListener('change', previewImage);
 
 function registerOrLogin() {
+    localStorage.setItem("isLoggedIn", "true");
+    alert("You are now logged in!");
     const username = document.getElementById('username').value.trim();
     const errorDiv = document.getElementById('error');
 
@@ -117,14 +191,47 @@ function registerOrLogin() {
 
     // Set the current user and update UI
     currentUser = username;
-    document.getElementById('auth-section').style.display = 'none';
+    // document.getElementById('auth-section').style.display = 'none';
     document.getElementById('uploadForm').style.display = 'block';
     document.getElementById('error').innerText = '';
     updateScoreDisplay();
     displayLeaderboard();
 }
 
+let map, marker;
+// Funtion to update the marker on the map
+function updateLocation() {
+    const location = document.getElementById("location").value;
+    if (!location) {
+      alert("Please enter a location.");
+      return;
+    }
+    geocodeLocation(location);
+}
 
+// Function to geocode the location and place a marker
+function geocodeLocation(location) {
+    const geocoder = new google.maps.Geocoder();
+    
+    geocoder.geocode({ address: location }, (results, status) => {
+      if (status === "OK") {
+        const position = results[0].geometry.location;
+        map.setCenter(position);
+        map.setZoom(12);
+  
+        if (marker) {
+          marker.setPosition(position);
+        } else {
+          marker = new google.maps.Marker({
+            map: map,
+            position: position,
+          });
+        }
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+}
 
 function updateScoreDisplay() {
     if (currentUser) {
@@ -138,7 +245,7 @@ function displayLeaderboard() {
     leaderboardDiv.innerHTML = '';
 
     const sortedUsers = Object.keys(users)
-        .sort((a, b) => users[b].uploads - users[a].uploads)
+        .sort((a, b) => users[a].uploads - users[b].uploads)
         .slice(0, 10); // Display top 10 users
 
     sortedUsers.forEach((username, index) => {
@@ -150,47 +257,12 @@ function displayLeaderboard() {
     });
 }
 
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: 37.7749, lng: -122.4194 },
+    zoom: 8,
+  });
+}
 
 // Load leaderboard on page load
 displayLeaderboard();
-
-
-    // Function to update location and place a marker on the map
-    function updateLocation() {
-        var location = document.getElementById('location').value;
-  
-        if (!location || !uploadedImage) {
-          alert("Please enter a location and upload a photo.");
-          return;
-        }
-  
-        // Use OpenStreetMap's Nominatim API to get location coordinates
-        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${location}`)
-          .then(response => response.json())
-          .then(data => {
-            if (data.length > 0) {
-              var lat = parseFloat(data[0].lat);
-              var lon = parseFloat(data[0].lon);
-  
-              // Create a new marker with the uploaded image and location
-              var newMarker = L.marker([lat, lon]).addTo(map);
-              newMarker.bindPopup(`
-                <b>Location:</b> ${location}<br>
-                <img src="${uploadedImage}" alt="Uploaded Animal Photo" width="200" />
-              `).openPopup();
-  
-              // Store the new marker in markers array
-              markers.push(newMarker);
-  
-              // Center the map on the new marker location
-              map.setView([lat, lon], 13);
-            } else {
-              alert('Location not found. Please try again.');
-            }
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred while retrieving the location.');
-          });
-      }
-  
