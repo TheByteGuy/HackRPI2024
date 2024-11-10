@@ -124,6 +124,10 @@ function registerOrLogin() {
     displayLeaderboard();
 }
 
+function updateLocation() {
+
+}
+
 function updateScoreDisplay() {
     if (currentUser) {
         document.getElementById('uploadCount').innerText = users[currentUser].uploads;
