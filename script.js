@@ -151,19 +151,3 @@ function displayLeaderboard() {
 
 // Load leaderboard on page load
 displayLeaderboard();
-
-
-// Detect if the user is on a desktop
-function applyDesktopClass() {
-    const userAgent = navigator.userAgent;
-
-    if (userAgent.includes('Windows') || userAgent.includes('Macintosh') || userAgent.includes('Linux')) {
-        // Add 'desktop' class if a desktop is detected
-        document.body.classList.add('desktop');
-    } else {
-        // Add 'mobile' class if not desktop
-        document.body.classList.add('mobile');
-    }
-}
-
-applyDesktopClass();
