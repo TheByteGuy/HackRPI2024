@@ -152,30 +152,35 @@
         color: #333;
     }
 
-    /* Auth Section Styling */
-    #auth-section {
-        margin-bottom: 20px;
-    }
 
-    #auth-section input, #auth-section button {
-        padding: 10px;
-        margin: 5px 0;
-        width: 100%;
-        max-width: 300px;
-    }
 
-    #auth-section button {
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
+/* Auth Section Styling */
+#auth-section, #auth-section-1 {
+    margin-bottom: 20px;
+}
 
-    #auth-section button:hover {
-        background-color: #0056b3;
-    }
+#auth-section input, #auth-section-1 input, #auth-section button, #auth-section-1 button {
+    padding: 10px;
+    margin: 5px 0;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Button styling */
+#auth-section button, #auth-section-1 button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#auth-section button:hover, #auth-section-1 button:hover {
+    background-color: #0056b3;
+}
+
+
 
     /* Fade-in Animation */
     @keyframes fadeIn {
@@ -346,19 +351,21 @@
         color: #333;
     }
 
+
+
     /* Auth Section Styling */
-    #auth-section {
+    #critter-section {
         margin-bottom: 20px;
     }
 
-    #auth-section input, #auth-section button {
+    #critter-section input, #critter-section button {
         padding: 10px;
         margin: 5px 0;
         width: 100%;
         max-width: 300px;
     }
 
-    #auth-section button {
+    #critter-section button {
         background-color: #007bff;
         color: #fff;
         border: none;
@@ -367,7 +374,36 @@
         transition: background-color 0.3s;
     }
 
-    #auth-section button:hover {
+    #critter-section button:hover {
+        background-color: #0056b3;
+    }
+
+
+
+
+    /* Auth Section Styling */
+    #auth-section, #auth-section-1 {
+        margin-bottom: 20px;
+    }
+
+    #auth-section input, #auth-section-1 input, #auth-section button, #auth-section-1 button {
+        padding: 10px;
+        margin: 5px 0;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    /* Button styling */
+    #auth-section button, #auth-section-1 button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #auth-section button:hover, #auth-section-1 button:hover {
         background-color: #0056b3;
     }
 

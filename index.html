@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Critter Capture AI</title>
     <link rel="icon" href="icon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css" />  
   </head>
   <body>
     <!-- Banner Section -->
@@ -15,25 +15,29 @@
         alt="Critter Capture Banner"
         width="405"
         height="90"
-        align="top"
       />
     </div>
+
 
     <div class="majority">
       <!-- Main Content Section -->
       <div class="container">
         <h1>🐾 Critter Capture</h1>
         <p>Upload a photo of an animal to see its classification!</p>
-
         <!-- Upload Form -->
         <form id="uploadForm">
           <label for="photo" class="file-label">
             <input type="file" id="photo" name="photo" accept="image/*" required="">
             <span>Select a Photo</span>
           </label>
-          <button type="button" onclick="classifyAnimal()">
-            Classify Animal
-          </button>
+          <!-- Location Input -->
+
+
+          <div id="auth-section-1">
+            <input type="text" id="location" placeholder="Enter Location (City or Coordinates)" required>
+            <button type="button" onclick="updateLocation(); classifyAnimal()">Add Location</button>
+          </div>
+
         </form>
 
         <!-- Image Preview -->
@@ -57,20 +61,10 @@
 
         <!-- Login/Registration Form -->
         <div id="auth-section">
-          <input type="text" id="username" placeholder="Enter Username" required="">
+          <input type="text" id="username" placeholder="Enter Username" required>
           <button onclick="registerOrLogin()">Register/Login</button>
         </div>
 
-        <!-- Upload Form (Hidden initially) -->
-        <form id="uploadForm" style="display: none">
-          <label for="photo" class="file-label">
-            <input type="file" id="photo" name="photo" accept="image/*" required="">
-            <span>Select a Photo</span>
-          </label>
-          <button type="button" onclick="classifyAnimal()">
-            Classify Animal
-          </button>
-        </form>
 
         <!-- Image Preview -->
         <div id="image-preview">
@@ -89,13 +83,134 @@
         <!-- Error Message -->
         <div id="error" class="error"></div>
       </div>
-    <div class="container">
-        <h1>🌍 Location</h1>
-        <h4>This is where your animal is located:</h4>
-      <div id="auth-section">
-          <input type="text" id="location" placeholder="Location" required="">
-          <button onclick="updateLocation()">Input Location</button>
-        </div></div></div>
+      <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <title>Critter Capture AI</title>
+          <link rel="icon" href="icon.ico" type="image/x-icon" />
+          <link rel="stylesheet" href="styles.css" />
+          <style>
+            /* Styling for layout */
+            .container {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              margin-top: 20px;
+            }
+      
+            /* Map container styling */
+            #map {
+              height: 400px;
+              width: 100%;
+              margin-top: 20px;
+            }
+      
+            /* Image preview styling */
+            #image-preview img {
+              max-width: 200px;
+              max-height: 150px;
+              margin-top: 10px;
+            }
+          </style>
+          <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet/dist/leaflet.css"
+          />
+        </head>
+        <body>
+          <!-- Main Content Section -->
+          <div class="container">
+            <!-- Image Preview -->
+            <div id="image-preview">
+              <img id="preview-image" src="" alt="Image Preview" />
+            </div>
+      
+            <!-- Map Section -->
+            <h1>🌍 Animal Location Map</h1>
+            <div id="map"></div>
+          </div>
+      
+          <!-- Leaflet JavaScript for Map -->
+          <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+          <script>
+            // Initialize the map with default coordinates (e.g., New York)
+            var map = L.map("map").setView([40.7128, -74.006], 13);
+      
+            // Add OpenStreetMap tiles as the base layer
+            L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+              attribution:
+                '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            }).addTo(map);
+      
+            // Store markers and uploaded image URL
+            var markers = [];
+            var uploadedImage = null;
+      
+            // Handle file upload and display image preview
+            document.getElementById("photo").addEventListener("change", function (event) {
+              var file = event.target.files[0];
+              var reader = new FileReader();
+      
+              reader.onload = function (e) {
+                document.getElementById("preview-image").src = e.target.result;
+                uploadedImage = e.target.result; // Save uploaded image URL
+              };
+      
+              if (file) {
+                reader.readAsDataURL(file);
+              }
+            });
+      
+            function updateLocation() {
+              var location = document.getElementById("location").value;
+      
+              if (!location || !uploadedImage) {
+                alert("Please enter a location and upload a photo.");
+                return;
+              }
+      
+              // Fetch coordinates using OpenStreetMap's Nominatim API
+              fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${location}`)
+                .then((response) => response.json())
+                .then((data) => {
+                  if (data.length > 0) {
+                    var lat = parseFloat(data[0].lat);
+                    var lon = parseFloat(data[0].lon);
+      
+                    // Add marker with location and uploaded image
+                    var newMarker = L.marker([lat, lon]).addTo(map);
+                    newMarker
+                      .bindPopup(`
+                        <b>Location:</b> ${location}<br>
+                        <img src="${uploadedImage}" alt="Uploaded Animal Photo" width="150" />
+                      `)
+                      .openPopup();
+      
+                    // Store new marker in markers array
+                    markers.push(newMarker);
+      
+                    // Center map on new marker location
+                    map.setView([lat, lon], 13);
+                  } else {
+                    alert("Location not found. Please try again.");
+                  }
+                })
+                .catch((error) => {
+                  console.error("Error:", error);
+                  alert("An error occurred while retrieving the location.");
+                });
+            }
+          </script>
+        </body>
+      </html>
+      
+    </div>
+
+    </div>
+    
     <script src="script.js"></script>
+    
   </body>
 </html>
