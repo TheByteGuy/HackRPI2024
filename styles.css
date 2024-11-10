@@ -17,6 +17,7 @@ body {
     justify-content: center;  /* Align content to the top */
     align-items: center;         /* Center content horizontally */
     width: 100%;                 /* Ensure the banner spans the full width */
+    background-color: black;
 }
 
 .majority {
