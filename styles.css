@@ -1,184 +1,379 @@
-/* Basic Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+@media (max-width: 769px) {
+    /* Basic Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        display: block;
+        background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
+    }
+
+    /* Body and Container Styling */
+    .banner {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;  /* Align content to the top */
+        align-items: center;         /* Center content horizontally */
+        width: 100%;                 /* Ensure the banner spans the full width */
+    }
+
+    .majority {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column; /* Stack boxes vertically */
+        align-items: center;
+        padding-top: 20px;
+        gap: 1.0%;
+    }
+
+    .top-center-image {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 20px; /* Space below the image */
+    }
+
+    .top-center-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Main Container Styling */
+    .container {
+        text-align: center;
+        background: #fff;
+        padding: 30px 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 90%;
+        margin-bottom: 20px;
+        animation: fadeIn 1.2s ease-in-out;
+    }
+
+    /* Title Styling */
+    h1 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    /* Instruction Text */
+    p {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    /* Custom File Input */
+    .file-label {
+        display: inline-block;
+        cursor: pointer;
+        color: #fff;
+        background-color: #007BFF;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+        margin-bottom: 15px;
+    }
+
+    .file-label:hover {
+        background-color: #0056b3;
+    }
+
+    .file-label input[type="file"] {
+        display: none;
+    }
+
+    /* Button Styling */
+    button {
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s;
+    }
+
+    button:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+
+    /* Result and Error Styling */
+    .result, .error {
+        margin-top: 20px;
+        font-size: 1.2em;
+    }
+
+    .result {
+        color: #333;
+    }
+
+    .error {
+        color: #dc3545;
+        font-weight: bold;
+    }
+
+    /* Preview Image Styling */
+    #image-preview {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #preview-image {
+        max-width: 100%;
+        max-height: 200px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        display: none;
+    }
+
+    /* Leaderboard Styling */
+    #leaderboard {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+    }
+
+    .leaderboard-entry {
+        font-size: 1rem;
+        padding: 5px 0;
+        color: #333;
+    }
+
+    /* Auth Section Styling */
+    #auth-section {
+        margin-bottom: 20px;
+    }
+
+    #auth-section input, #auth-section button {
+        padding: 10px;
+        margin: 5px 0;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    #auth-section button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #auth-section button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Fade-in Animation */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
 }
 
-body {
-    display: block;
-    background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
-}
 
-/* Body and Container Styling */
-.banner {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;  /* Align content to the top */
-    align-items: center;         /* Center content horizontally */
-    width: 100%;                 /* Ensure the banner spans the full width */
-    /* background-color: black; */
-}
 
-.majority {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: row;
-    align-items: start;
-    padding-top: 20px; /* Space at the top for the image */
-    justify-content: center;
-    gap: 1.0%;
-}
 
-.top-center-image {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 20px; /* Space below the image */
-}
 
-.top-center-image img {
-    max-width: 100%;
-    height: auto;
-}
 
-/* Main Container Styling */
-.container {
-    text-align: center;
-    background: #fff;
-    padding: 30px 20px;
-    border-radius: 12px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-    max-width: 400px;
-    width: 90%;
-    margin-bottom: 20px;
-    animation: fadeIn 1.2s ease-in-out;
-}
+@media (min-width: 769px) {
 
-/* Title Styling */
-h1 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 10px;
-}
 
-/* Instruction Text */
-p {
-    font-size: 1rem;
-    color: #555;
-    margin-bottom: 20px;
-}
+    /* Basic Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-/* Custom File Input */
-.file-label {
-    display: inline-block;
-    cursor: pointer;
-    color: #fff;
-    background-color: #007BFF;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    margin-bottom: 15px;
-}
+    body {
+        display: block;
+        background: linear-gradient(135deg, #f0f8ff, #e6e6fa);
+    }
 
-.file-label:hover {
-    background-color: #0056b3;
-}
+    /* Body and Container Styling */
+    .banner {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;  /* Align content to the top */
+        align-items: center;         /* Center content horizontally */
+        width: 100%;                 /* Ensure the banner spans the full width */
+    }
 
-.file-label input[type="file"] {
-    display: none;
-}
+    .majority {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+        padding-top: 20px; /* Space at the top for the image */
+        justify-content: center;
+        gap: 1.0%;
+    }
 
-/* Button Styling */
-button {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s;
-}
+    .top-center-image {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 20px; /* Space below the image */
+    }
 
-button:hover {
-    background-color: #218838;
-    transform: scale(1.05);
-}
+    .top-center-image img {
+        max-width: 100%;
+        height: auto;
+    }
 
-/* Result and Error Styling */
-.result, .error {
-    margin-top: 20px;
-    font-size: 1.2em;
-}
+    /* Main Container Styling */
+    .container {
+        text-align: center;
+        background: #fff;
+        padding: 30px 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        width: 90%;
+        margin-bottom: 20px;
+        animation: fadeIn 1.2s ease-in-out;
+    }
 
-.result {
-    color: #333;
-}
+    /* Title Styling */
+    h1 {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
 
-.error {
-    color: #dc3545;
-    font-weight: bold;
-}
+    /* Instruction Text */
+    p {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 20px;
+    }
 
-/* Preview Image Styling */
-#image-preview {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    /* Custom File Input */
+    .file-label {
+        display: inline-block;
+        cursor: pointer;
+        color: #fff;
+        background-color: #007BFF;
+        padding: 10px 20px;
+        border-radius: 6px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+        margin-bottom: 15px;
+    }
 
-#preview-image {
-    max-width: 100%;
-    max-height: 200px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    display: none;
-}
+    .file-label:hover {
+        background-color: #0056b3;
+    }
 
-/* Leaderboard Styling */
-#leaderboard {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-}
+    .file-label input[type="file"] {
+        display: none;
+    }
 
-.leaderboard-entry {
-    font-size: 1rem;
-    padding: 5px 0;
-    color: #333;
-}
+    /* Button Styling */
+    button {
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: #fff;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s;
+    }
 
-/* Auth Section Styling */
-#auth-section {
-    margin-bottom: 20px;
-}
+    button:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
 
-#auth-section input, #auth-section button {
-    padding: 10px;
-    margin: 5px 0;
-    width: 100%;
-    max-width: 300px;
-}
+    /* Result and Error Styling */
+    .result, .error {
+        margin-top: 20px;
+        font-size: 1.2em;
+    }
 
-#auth-section button {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+    .result {
+        color: #333;
+    }
 
-#auth-section button:hover {
-    background-color: #0056b3;
-}
+    .error {
+        color: #dc3545;
+        font-weight: bold;
+    }
 
-/* Fade-in Animation */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    /* Preview Image Styling */
+    #image-preview {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #preview-image {
+        max-width: 100%;
+        max-height: 200px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        display: none;
+    }
+
+    /* Leaderboard Styling */
+    #leaderboard {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+    }
+
+    .leaderboard-entry {
+        font-size: 1rem;
+        padding: 5px 0;
+        color: #333;
+    }
+
+    /* Auth Section Styling */
+    #auth-section {
+        margin-bottom: 20px;
+    }
+
+    #auth-section input, #auth-section button {
+        padding: 10px;
+        margin: 5px 0;
+        width: 100%;
+        max-width: 300px;
+    }
+
+    #auth-section button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #auth-section button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Fade-in Animation */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 }
