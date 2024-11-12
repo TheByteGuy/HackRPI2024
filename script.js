@@ -5,11 +5,6 @@ async function classifyAnimal() {
     resultDiv.innerText = ''; // Clear previous result
     errorDiv.innerText = '';  // Clear previous error
 
-    if (fileInput.files.length === 0) {
-        alert('Please select a photo.');
-        return;
-    }
-
     const file = fileInput.files[0];
     const formData = new FormData();
     formData.append('photo', file);
@@ -42,7 +37,6 @@ async function classifyAnimal() {
     
     }
 }
-
 
 
 
@@ -155,42 +149,44 @@ function displayLeaderboard() {
 displayLeaderboard();
 
 
-    // Function to update location and place a marker on the map
-    function updateLocation() {
-        var location = document.getElementById('location').value;
-  
-        if (!location || !uploadedImage) {
-          alert("Please enter a location and upload a photo.");
-          return;
-        }
-  
-        // Use OpenStreetMap's Nominatim API to get location coordinates
-        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${location}`)
-          .then(response => response.json())
-          .then(data => {
+// Function to update location and place a marker on the map
+function updateLocation() {
+    var location = document.getElementById('location').value;
+
+    if (!location || !uploadedImage) {
+        alert("Please enter a location and upload a photo.");
+        return;
+    }
+
+    // Use OpenStreetMap's Nominatim API to get location coordinates
+    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${location}`)
+        .then(response => response.json())
+            .then(data => {
             if (data.length > 0) {
-              var lat = parseFloat(data[0].lat);
-              var lon = parseFloat(data[0].lon);
-  
-              // Create a new marker with the uploaded image and location
-              var newMarker = L.marker([lat, lon]).addTo(map);
-              newMarker.bindPopup(`
-                <b>Location:</b> ${location}<br>
-                <img src="${uploadedImage}" alt="Uploaded Animal Photo" width="200" />
-              `).openPopup();
-  
-              // Store the new marker in markers array
-              markers.push(newMarker);
-  
-              // Center the map on the new marker location
-              map.setView([lat, lon], 13);
-            } else {
-              alert('Location not found. Please try again.');
+                    var lat = parseFloat(data[0].lat);
+                    var lon = parseFloat(data[0].lon);
+
+                    // Create a new marker with the uploaded image and location
+                    var newMarker = L.marker([lat, lon]).addTo(map);
+                    newMarker.bindPopup(`
+                    <b>Location:</b> ${location}<br>
+                    <img src="${uploadedImage}" alt="Uploaded Animal Photo" width="200" />
+                    `).openPopup();
+
+                    // Store the new marker in markers array
+                    markers.push(newMarker);
+
+                    // Center the map on the new marker location
+                    map.setView([lat, lon], 13);
+                } else {
+                    alert('Location not found. Please try again.');
+                }
             }
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred while retrieving the location.');
-          });
-      }
-  
+        )
+        .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while retrieving the location.');
+        }
+    );
+}
+

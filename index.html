@@ -8,15 +8,41 @@
     <link rel="stylesheet" href="styles.css" />  
   </head>
   <body>
-    <!-- Banner Section -->
-    <div class="banner">
-      <img
-        src="Banner.png"
-        alt="Critter Capture Banner"
-        width="405"
-        height="90"
-      />
-    </div>
+    <nav class="navbar">
+        <div class="navbar-content">
+          <div class="title-subtitle">
+            <div class="title">Critter Capture</div>
+            <div class="subtitle">A 2024 hackRPI Project</div>
+        </div>
+          <img src="ImagesAndEtc\Squril.png" alt="Squril" class="navbar-logo" />
+  
+          <img src="ImagesAndEtc\Cat.png" alt="Cat" class="navbar-avatar" />
+        </div>
+    
+        <button id="theme-toggle" onclick="toggleTheme()">Toggle Light/Dark Mode</button>
+
+        <script>
+            function toggleTheme() {
+                // Get the current theme from the body's data attribute
+                const currentTheme = document.body.getAttribute('data-theme');
+    
+                // Toggle between 'light' and 'dark'
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+                // Set the new theme on the body
+                document.body.setAttribute('data-theme', newTheme);
+    
+                // Optionally, save the theme in localStorage to remember the choice
+                localStorage.setItem('theme', newTheme);
+            }
+    
+            // Load saved theme on page load
+            document.addEventListener('DOMContentLoaded', () => {
+                const savedTheme = localStorage.getItem('theme') || 'dark';
+                document.body.setAttribute('data-theme', savedTheme);
+            });
+        </script>    
+    </nav>
 
 
     <div class="majority">
@@ -26,18 +52,15 @@
         <p>Upload a photo of an animal to see its classification!</p>
         <!-- Upload Form -->
         <form id="uploadForm">
-          <label for="photo" class="file-label">
-            <input type="file" id="photo" name="photo" accept="image/*" required="">
-            <span>Select a Photo</span>
-          </label>
-          <!-- Location Input -->
-
-
-          <div id="auth-section-1">
-            <input type="text" id="location" placeholder="Enter Location (City or Coordinates)" required>
-            <button type="button" onclick="updateLocation(); classifyAnimal()">Add Location</button>
-          </div>
-
+            <label for="photo" class="file-label">
+              <input type="file" id="photo" name="photo" accept="image/*" required="">
+              <span>Select a Photo</span>
+            </label>
+          
+            <div id="auth-section-1">
+              <input type="text" id="location" placeholder="Enter Location (City or Coordinates)" required>
+              <button type="button" onclick="updateLocation(); classifyAnimal()">Upload and see!</button>
+            </div>
         </form>
 
         <!-- Image Preview -->
@@ -212,5 +235,6 @@
     
     <script src="script.js"></script>
     
+    <script>initializeDarkMode();</script>
   </body>
 </html>
