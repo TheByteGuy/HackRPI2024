@@ -23,12 +23,11 @@ We build a classifier using a combination of HTML, CSS, PEFT Transformers, and L
 We had a great level of difficulty in finding a suitable AI model to use. In the end, we determined to fine tune our own. We also struggled with implementing this AI into our front-end, as all of us are primarily back-end developers.
 
 ## Accomplishments that we're proud of
-We fine-tuned ResNet50, which was a new experience for most of our team.
+We fine-tuned ResNet50, which was a new experience for most of our team!
 
 ## What we learned
 We learned how to fine tune an AI model. We learned how to implement multiple interesting features, such as an interactive map, uploaded image previews, and AI generated summary text.
 
 ## What's next for Critter Capture
 We hope to add additional gamification to our website, and maybe build a mobile app. Depending on the popularity of our project, we will start hosting publicly instead of just on our test server.
-
 
