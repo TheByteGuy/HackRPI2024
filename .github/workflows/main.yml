@@ -19,18 +19,22 @@ jobs:
           # Extract the first line from the commit message to use as the push title.
           COMMIT_TITLE=$(echo "$COMMIT_MESSAGE" | head -n 1)
 
-          # Use jq to safely create the JSON payload. This will automatically escape special characters.
+          # Convert COMMIT_TIME (which is in ISO UTC format) to EST (America/New_York)
+          # and format it as MM/DD/YYYY, HH:MM:SS AM/PM.
+          FORMATTED_TIME=$(TZ="America/New_York" date -d "$COMMIT_TIME" "+%m/%d/%Y, %I:%M:%S %p")
+
+          # Use jq to safely construct a valid JSON payload.
           payload=$(jq -n \
             --arg username "GitHub Bot" \
             --arg title "$COMMIT_TITLE" \
             --arg message "$COMMIT_MESSAGE" \
             --arg branch "$BRANCH" \
-            --arg time "$COMMIT_TIME" \
+            --arg time "$FORMATTED_TIME" \
             '{
               username: $username,
               embeds: [{
                 title: ("Push Notification: " + $title),
-                description: ("**Commit Message:** " + $message + "\n**Branch:** " + $branch + "\n**Time:** " + $time),
+                description: ("**Commit Message:** " + $message + "\n**Branch:** " + $branch + "\n**Time (EST):** " + $time),
                 color: 3447003
               }]
             }'
