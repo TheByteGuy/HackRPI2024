@@ -34,7 +34,7 @@ jobs:
               username: $username,
               embeds: [{
                 title: ("Push Notification: " + $title),
-                description: ("**Commit Message:** " + $message + "\n**Branch:** " + $branch + "\n**Time (EST):** " + $time),
+                description: ("**Commit Message:** " + $message + "\n**Branch:** " + $branch + "\n**Time:** " + $time),
                 color: 3447003
               }]
             }'
