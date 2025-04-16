@@ -8,7 +8,7 @@
 
 ##### -You will also receive a score for the number of uploads you make, which will be shown on the leaderboard. 
 
-##### -We have a local live map that will show the locations of the photos you have taken.
+##### -We have a local live map that will show the locations of the photos you have taken
 
 ## Inspiration
 Our project was originally inspired by the game Pokémon Snap. In the game, your goal is to take photographs of Pokémon, which will then get reviewed for a score.
