@@ -1,6 +1,5 @@
 name: Discord Notification on Push
 
-# Trigger this action on any push to any branch.
 on:
   push:
 
@@ -12,29 +11,33 @@ jobs:
       - name: Send Discord Notification
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          # Using built-in GitHub context variables
           BRANCH: ${{ github.ref_name }}
-          # The entire commit message and its timestamp from the head commit:
           COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
           COMMIT_TIME: ${{ github.event.head_commit.timestamp }}
         run: |
           echo "Preparing Discord payload..."
-          # Extract the first line from the commit message to use as the push title
+          # Extract the first line from the commit message to use as the push title.
           COMMIT_TITLE=$(echo "$COMMIT_MESSAGE" | head -n 1)
-          
-          # Construct the JSON payload.
-          PAYLOAD=$(printf '{
-            "username": "GitHub Bot",
-            "embeds": [{
-              "title": "Push Notification: %s",
-              "description": "**Commit Message:** %s\n**Branch:** %s\n**Time:** %s",
-              "color": 3447003
-            }]
-          }' "$COMMIT_TITLE" "$COMMIT_MESSAGE" "$BRANCH" "$COMMIT_TIME")
-          
+
+          # Use jq to safely create the JSON payload. This will automatically escape special characters.
+          payload=$(jq -n \
+            --arg username "GitHub Bot" \
+            --arg title "$COMMIT_TITLE" \
+            --arg message "$COMMIT_MESSAGE" \
+            --arg branch "$BRANCH" \
+            --arg time "$COMMIT_TIME" \
+            '{
+              username: $username,
+              embeds: [{
+                title: ("Push Notification: " + $title),
+                description: ("**Commit Message:** " + $message + "\n**Branch:** " + $branch + "\n**Time:** " + $time),
+                color: 3447003
+              }]
+            }'
+          )
+
           echo "Sending Discord notification..."
-          # Send the payload to Discord webhook.
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d "$PAYLOAD" \
+               -d "$payload" \
                "$DISCORD_WEBHOOK_URL"
